@@ -22,6 +22,14 @@ TODO: 上記プログラムが終了したら LINE に通知を送る。
 - Kstyle
 - more...
 
+## 環境変数
+
+- MAIL_ADDRESS={送信元のメアド}
+- APP_PASSWORD={送信元のメアドのアプリケーションパスワード}
+- TO_ADDRESS={送信先のメアド}
+- API_USERNAME={fastAPI 認証用のユーザーネーム}
+- API_PASSWORD={fastAPI 認証用のパスワード...使ってない。}
+
 ## その他
 
 - app, lambda.sh しか使わない。他は置いてあるだけ。
