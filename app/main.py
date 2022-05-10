@@ -59,50 +59,50 @@ def deduplicate(results: List[dict]) -> List[dict]:
 def handler(args, context):
     groups = ['blackpink', 'aespa', 'ive', 'gi-dle', 'kep1er', 'nmixx']
     description = 'default message'
-    # try:
     results = []
-    # n=site_num, m=group_num
-    # O(n)*O(m)
-    # グループごとにループ
-    for group in groups:
-        print('group: ', group)
-        urls = Urls(group)
-        urls_instance_value: dict = urls.__dict__
-        del urls_instance_value['group_name']
+    try:
+        # n=site_num, m=group_num
+        # O(n)*O(m)
+        # グループごとにLoop
+        for group in groups:
+            print('group: ', group)
+            urls = Urls(group)
+            urls_instance_value: dict = urls.__dict__
+            del urls_instance_value['group_name']
 
-        # siteごとにループ
-        for site, url in urls_instance_value.items():
-            print("site:", site, "  url:", url)
-            parser = soup_parser(site)
-            result: List[dict] = get_data(url, parser, group)
-            if len(result) > 0:
-                for r in result:
-                    results.append(r)
+            # siteごとにLoop
+            for site, url in urls_instance_value.items():
+                print("site:", site, "  url:", url)
+                parser = soup_parser(site)
+                result: List[dict] = get_data(url, parser, group)
+                if len(result) > 0:
+                    for r in result:
+                        results.append(r)
 
-        print('\n')
+            print('\n')
 
-    # 同記事複数グループのタグがある記事もあるので、それもフィルタリングする。
-    # 一つの記事にA,Bというグループタグがあったときに2回同じ記事をリストに入れないようにする。
-    filtered_results = deduplicate(results)
-    print(filtered_results)
-    print('記事数', len(filtered_results))
+        # 同記事複数グループのタグがある記事もあるので、それもフィルタリングする。
+        # 一つの記事にA,Bというグループタグがあったときに2回同じ記事をリストに入れないようにする。
+        filtered_results = deduplicate(results)
+        print(filtered_results)
+        print('記事数', len(filtered_results))
 
-    description = 'success!'
+        description = 'success!'
 
-    # APIに送信する。
-    # post_data(filtered_results)
+        # APIに送信する。
+        # post_data(filtered_results)
 
-    # 結果をメールで送信
-    print(description)
-    # send_mail(title='scraping and API post result',
-    #   description=description, contents=filtered_results)
-    # except Exception as e:
-    #     print(e)
-    #     description = str(e)
-    # return {
-    #     "message": "success!"
-    # }
-    return filtered_results
+        # 結果をメールで送信
+        print(description)
+        send_mail(title='scraping and API post result',
+                  description=description)
+
+    except Exception as e:
+        print(e)
+        description = str(e)
+    return {
+        "message": "success!"
+    }
 
 
 # handler('a', 'a')
