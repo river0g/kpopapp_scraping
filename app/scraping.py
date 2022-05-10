@@ -18,6 +18,8 @@ def scrape_page(url: str, parse_func, group_name: str) -> List[dict]:
         bs4オブジェクトをdictに変換する関数。
         なにも処理せずそのままbs4オブジェクトを返したいなら以下を引数にする。
         lambda soup: soup
+    group_name : str
+        スクレイピング対象のグループ
 
     Returns
     -------
@@ -33,12 +35,6 @@ def scrape_page(url: str, parse_func, group_name: str) -> List[dict]:
     articles = parse_func(soup, group_name)
 
     return articles
-
-
-# def data_dumps(parsed_data) -> str:
-#     if type(parsed_data) == 'str':
-#         return parsed_data
-#     return json.dumps(parsed_data, ensure_ascii=False, indent=2)
 
 
 # test用
