@@ -90,7 +90,7 @@ def handler(args, context):
         description = 'success!'
 
         # APIに送信する。
-        # post_data(filtered_results)
+        post_data(filtered_results)
 
         # 結果をメールで送信
         print(description)
